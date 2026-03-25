@@ -1,0 +1,65 @@
+using System;
+using UnityEngine;
+
+public class ZombePatrol : MonoBehaviour
+{
+    [Tooltip("Вставьте сюда объект расположением которого будет правая граница перемещения")]
+    [SerializeField] Transform _targetStart;
+    [Tooltip("Вставьте сюда объект расположением которого будет левая граница перемещения")]
+    [SerializeField] Transform _targetEnd;
+
+    [SerializeField] private float _speedMove = 1f;
+
+    private Vector3 _currentPosition;
+    private Quaternion _currentRotation;
+
+    private bool _isArrived;
+
+    private void Start()
+    {
+        _currentPosition = transform.position;
+
+        _isArrived = false;
+
+        //_currentPosition.x = Random.Range(_targetStart.position.x, _targetEnd.position.x);
+
+        transform.position = _currentPosition;
+    }
+
+    private void Update()
+    {
+        _currentRotation = transform.rotation;
+
+        if (_isArrived == false)
+        {
+            Work(_targetStart, false);
+        }
+        else if (_isArrived)
+        {
+            Work(_targetEnd, true);
+        }
+    }
+
+    private void Work(Transform target, bool isArrived)
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target.position, _speedMove * Time.deltaTime);
+
+        if (Vector2.Distance(transform.position, target.position) < 1f)
+        {
+            if (isArrived != true)
+            {
+                _isArrived = true;
+                transform.rotation = Quaternion.Euler(0, -180f, 0); 
+            }
+            else if (isArrived)
+            {
+                _isArrived = false;
+                transform.rotation = Quaternion.Euler(0, 0f, 0);
+                //_currentRotation.y = 0;
+                //transform.rotation = _currentRotation;
+            }
+
+            //transform.rotation = _currentRotation;
+        }
+    }
+}
