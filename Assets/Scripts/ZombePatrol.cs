@@ -21,8 +21,6 @@ public class ZombePatrol : MonoBehaviour
 
         _isArrived = false;
 
-        //_currentPosition.x = Random.Range(_targetStart.position.x, _targetEnd.position.x);
-
         transform.position = _currentPosition;
     }
 
@@ -55,11 +53,7 @@ public class ZombePatrol : MonoBehaviour
             {
                 _isArrived = false;
                 transform.rotation = Quaternion.Euler(0, 0f, 0);
-                //_currentRotation.y = 0;
-                //transform.rotation = _currentRotation;
             }
-
-            //transform.rotation = _currentRotation;
         }
     }
 }
