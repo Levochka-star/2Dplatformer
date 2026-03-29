@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class ZombePatrol : MonoBehaviour
@@ -10,24 +9,15 @@ public class ZombePatrol : MonoBehaviour
 
     [SerializeField] private float _speedMove = 1f;
 
-    private Vector3 _currentPosition;
-    private Quaternion _currentRotation;
-
     private bool _isArrived;
 
     private void Start()
     {
-        _currentPosition = transform.position;
-
         _isArrived = false;
-
-        transform.position = _currentPosition;
     }
 
     private void Update()
     {
-        _currentRotation = transform.rotation;
-
         if (_isArrived == false)
         {
             Work(_targetStart, false);

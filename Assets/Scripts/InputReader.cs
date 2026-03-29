@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputReader : MonoBehaviour
@@ -27,9 +25,5 @@ public class InputReader : MonoBehaviour
         {
             VertiсalMovementStarted?.Invoke();
         }
-        //    else if (Input.GetKey(_keyLeft))
-        //    {
-        //        VertiсalMovementStarted?.Invoke(-1f);
-        //    }
     }
 }

@@ -6,7 +6,6 @@ public class Jumper : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private Transform _radiusLegs;
     [SerializeField] private LayerMask _layerGround;
-
     [SerializeField] private float _jumpForce = 10f;
 
     private Rigidbody2D _rigidBody;
