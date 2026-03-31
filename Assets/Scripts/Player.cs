@@ -1,23 +1,23 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour 
+public class Player : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Coin>())
+        if (collision.gameObject.TryGetComponent<Coin>(out Coin coin))
         {
-            collision.gameObject.SetActive(false);
+            coin.gameObject.SetActive(false);
         }
 
-        if(collision.gameObject.GetComponent<Island>())
+        if (collision.gameObject.TryGetComponent<Island>(out Island island))
         {
-            transform.SetParent(collision.gameObject.transform);
+            transform.SetParent(island.gameObject.transform);
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Island>())
+        if (collision.gameObject.TryGetComponent<Island>(out Island island))
         {
             transform.SetParent(null);
         }

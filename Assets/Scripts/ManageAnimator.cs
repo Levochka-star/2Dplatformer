@@ -1,37 +1,38 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
 public class ManageAnimator : MonoBehaviour
 {
-    private Animator _animator;
-    private Rigidbody2D _rigidbody;
-    [SerializeField] private Transform _radiusLegs;
-    [SerializeField] private LayerMask _layerGround;
-
-    private float _speedMoveX;
+    [SerializeField] private InputReader _inputReader;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Jumper _jumper;
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+
+        _jumper.Jumping += Jump;
+        _inputReader.Walking += Walk;
+        _inputReader.Runing += Run;
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        _speedMoveX = Mathf.Abs(_rigidbody.velocity.x);
+        _jumper.Jumping -= Jump;
+        _inputReader.Walking -= Walk;
+        _inputReader.Runing -= Run;
+    }
 
-        _animator.SetFloat("Blend", _speedMoveX);
+    private void Walk(bool isWalking)
+    {
+        _animator.SetBool("IsWalk", isWalking);
+    }
 
-        float radius = 0.2f;
+    private void Run(bool isWalking)
+    {
+        _animator.SetBool("IsRun", isWalking);
+    }
 
-        if (Physics2D.OverlapCircle(_radiusLegs.position, radius, _layerGround))
-        {
-            _animator.SetBool("PushSpace", false);
-        }
-        else
-        {
-            _animator.SetBool("PushSpace", true);
-        }
+    private void Jump()
+    {
+        _animator.SetTrigger("IsJump");
     }
 }

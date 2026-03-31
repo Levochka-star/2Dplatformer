@@ -24755,6 +24755,7 @@ GameObject:
   - component: {fileID: 1032610108}
   - component: {fileID: 1032610109}
   - component: {fileID: 1032610110}
+  - component: {fileID: 1032610114}
   - component: {fileID: 1032610111}
   - component: {fileID: 1032610112}
   - component: {fileID: 1032610113}
@@ -24933,7 +24934,8 @@ MonoBehaviour:
   _layerGround:
     serializedVersion: 2
     m_Bits: 8
-  _speedMove: 10
+  _speedMove: 7
+  _speedFastMove: 14
   _acceleration: 4.5
 --- !u!114 &1032610111
 MonoBehaviour:
@@ -24964,7 +24966,7 @@ MonoBehaviour:
   _layerGround:
     serializedVersion: 2
     m_Bits: 8
-  _jumpForce: 13.5
+  _jumpForce: 13
 --- !u!114 &1032610113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24977,10 +24979,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f6e60813788434fbe2436fcc07c03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radiusLegs: {fileID: 1800401843}
-  _layerGround:
-    serializedVersion: 2
-    m_Bits: 8
+  _inputReader: {fileID: 1524270017}
+  _animator: {fileID: 1032610104}
+  _jumper: {fileID: 1032610112}
+--- !u!114 &1032610114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032610103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b042cc8aa38bf7d42927e2257139b280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mover: {fileID: 1032610110}
 --- !u!1 &1087968967
 GameObject:
   m_ObjectHideFlags: 0
@@ -26613,6 +26627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _keyRight: 100
   _keyLeft: 97
+  _keyRun: 304
   _keyJump: 32
 --- !u!4 &1524270018
 Transform:

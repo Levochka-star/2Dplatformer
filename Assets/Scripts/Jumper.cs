@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -9,6 +10,8 @@ public class Jumper : MonoBehaviour
     [SerializeField] private float _jumpForce = 10f;
 
     private Rigidbody2D _rigidBody;
+
+    public event Action Jumping;
 
     private void OnEnable()
     {
@@ -27,12 +30,9 @@ public class Jumper : MonoBehaviour
 
         if (Physics2D.OverlapCircle(_radiusLegs.position, radius, _layerGround))
         {
-            Debug.Log("На земле");
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _jumpForce);
-        }
-        else
-        {
-            Debug.Log("Не на земле");
+
+            Jumping?.Invoke();
         }
     }
 }

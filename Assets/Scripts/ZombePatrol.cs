@@ -9,6 +9,9 @@ public class ZombePatrol : MonoBehaviour
 
     [SerializeField] private float _speedMove = 1f;
 
+    private Quaternion _localRotationRight = Quaternion.Euler(0f, 0f, 0f);
+    private Quaternion _localRotationLeft = Quaternion.Euler(0f, -180f, 0f);
+
     private bool _isArrived;
 
     private void Start()
@@ -32,17 +35,17 @@ public class ZombePatrol : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, _speedMove * Time.deltaTime);
 
-        if (Vector2.Distance(transform.position, target.position) < 1f)
+        if ((transform.position - target.position).sqrMagnitude < 1f)
         {
             if (isArrived != true)
             {
                 _isArrived = true;
-                transform.rotation = Quaternion.Euler(0, -180f, 0); 
+                transform.rotation = _localRotationLeft; 
             }
             else if (isArrived)
             {
                 _isArrived = false;
-                transform.rotation = Quaternion.Euler(0, 0f, 0);
+                transform.rotation = _localRotationRight;
             }
         }
     }
