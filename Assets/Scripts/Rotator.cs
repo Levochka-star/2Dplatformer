@@ -2,20 +2,16 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    [SerializeField] private Mover _mover;
+    private Quaternion _localRotationRight = Quaternion.Euler(0f, 0f, 0f);
+    private Quaternion _localRotationLeft = Quaternion.Euler(0f, -180f, 0f);
 
-    private void Start()
+    public void RightRotation ()
     {
-        _mover.PlayerTurning += Rotation;
+        transform.localRotation = _localRotationRight;
     }
 
-    private void OnDestroy()
+    public void LefttRotation ()
     {
-        _mover.PlayerTurning -= Rotation;
-    }
-
-    private void Rotation (Quaternion quaternion)
-    {
-        transform.localRotation = quaternion;
+        transform.localRotation = _localRotationLeft;
     }
 }

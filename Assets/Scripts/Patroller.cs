@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class ZombePatrol : MonoBehaviour
+public class Patroller : MonoBehaviour
 {
     [Tooltip("Вставьте сюда объект расположением которого будет правая граница перемещения")]
     [SerializeField] Transform _targetStart;
     [Tooltip("Вставьте сюда объект расположением которого будет левая граница перемещения")]
     [SerializeField] Transform _targetEnd;
-
+    [SerializeField] Rotator _rotator;
+ 
     [SerializeField] private float _speedMove = 1f;
-
-    private Quaternion _localRotationRight = Quaternion.Euler(0f, 0f, 0f);
-    private Quaternion _localRotationLeft = Quaternion.Euler(0f, -180f, 0f);
 
     private bool _isArrived;
 
@@ -40,12 +38,12 @@ public class ZombePatrol : MonoBehaviour
             if (isArrived != true)
             {
                 _isArrived = true;
-                transform.rotation = _localRotationLeft; 
+                _rotator.LefttRotation();
             }
             else if (isArrived)
             {
                 _isArrived = false;
-                transform.rotation = _localRotationRight;
+                _rotator.RightRotation();
             }
         }
     }
