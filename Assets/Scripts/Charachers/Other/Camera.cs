@@ -4,9 +4,9 @@ public class Camera : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private Vector3 _ofset = new Vector3(0f, 0f, 0f);
-    [SerializeField] private float _slideSpeed= 5f;
+    [SerializeField] private float _slideSpeed;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (_player != null)
         {
